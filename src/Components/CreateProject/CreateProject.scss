@@ -1,0 +1,54 @@
+.create-project {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    input {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.15s ease, background 0.15s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: var(--bg-primary);
+      }
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--bg-primary);
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 4px;
+  }
+}

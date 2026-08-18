@@ -1,0 +1,190 @@
+.project {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project__back {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    color: var(--text-primary);
+  }
+}
+
+.project__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  .Name h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+}
+
+.project__description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+.project__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* === Кнопка "Команда" === */
+
+.project__team-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 12px 0 14px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+}
+
+.project__team-count {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 20px;
+}
+
+/* === Меню действий с проектом (⋮) === */
+
+.project__actions-wrap {
+  position: relative;
+}
+
+.project__actions-trigger {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+}
+
+.project__actions-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  min-width: 190px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  animation: projectMenuIn 0.12s ease;
+
+  button {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 9px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.12s ease;
+
+    &:hover {
+      background: var(--bg-tertiary);
+    }
+  }
+}
+
+.project__actions-danger {
+  color: var(--danger) !important;
+
+  &:hover {
+    background: var(--danger-bg) !important;
+  }
+}
+
+@keyframes projectMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Модалка подтверждения удаления === */
+
+.project__delete-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 22px;
+}
+
+.project__delete-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .project {
+    padding: 16px;
+  }
+
+  .project__header {
+    flex-direction: column;
+  }
+
+  .project__header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

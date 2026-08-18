@@ -1,0 +1,219 @@
+.project-members {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.project-members__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project-members__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: var(--bg-secondary);
+  }
+}
+
+.avatar--sm {
+  flex-shrink: 0;
+}
+
+.project-members__info {
+  min-width: 0;
+  flex: 1;
+}
+
+.project-members__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.you-tag {
+  font-weight: 400;
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.project-members__email {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.role-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.role-badge--owner {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.role-badge--member {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+/* === Меню действий (⋮) === */
+
+.project-members__menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.project-members__menu-trigger {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.project-members__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  min-width: 160px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  animation: menuIn 0.12s ease;
+
+  button {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.12s ease;
+
+    &:hover {
+      background: var(--bg-tertiary);
+    }
+  }
+}
+
+.project-members__menu-danger {
+  color: var(--danger) !important;
+
+  &:hover {
+    background: var(--danger-bg) !important;
+  }
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Форма приглашения === */
+
+.project-members__invite {
+  display: flex;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.project-members__invite-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &:focus-within {
+    border-color: var(--accent);
+    background: var(--bg-primary);
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: none;
+    color: var(--text-primary);
+    font-size: 13px;
+    min-width: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--text-tertiary);
+    }
+  }
+}
+
+.project-members__invite .btn {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13px;
+  flex-shrink: 0;
+}

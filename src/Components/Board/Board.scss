@@ -1,0 +1,133 @@
+.board-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.board-toolbar {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.board-toolbar__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+
+  select {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+  }
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.board__column {
+  flex: 1 1 0;
+  min-width: 280px;
+  max-width: 360px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &--over {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+}
+
+.board__column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+}
+
+.board__count {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 20px;
+}
+
+.board__add {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: var(--accent);
+    color: var(--text-on-accent);
+  }
+}
+
+.board__column-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 40px;
+}
+
+.board__empty {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 18px 0;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .board {
+    flex-direction: column;
+  }
+
+  .board__column {
+    max-width: none;
+    width: 100%;
+  }
+}

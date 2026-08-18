@@ -1,0 +1,62 @@
+@use './variables.scss';
+@use './reset.scss';
+
+/* === Статус-бейдж проекта ===
+   Общий класс: используется в ProjectCard, ProjectDetail и GlobalSearch,
+   поэтому живёт здесь, а не в стилях конкретного компонента — иначе
+   он не подгружается, если страница с ним открыта раньше, чем список
+   проектов. */
+
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge--active {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.badge--done {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+/* === Статистическая карточка ===
+   Общий класс: используется в Profile и на дашборде главной страницы. */
+
+.stat-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-card__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-card__label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.stat-card--warning .stat-card__value {
+  color: var(--danger);
+}

@@ -1,0 +1,51 @@
+{
+  "name": "marketplace",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently \"yarn server\" \"yarn dev\"",
+    "server": "json-server --watch db.json --port 4000",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "typecheck": "tsc -b --noEmit",
+    "test": "vitest run --exclude \"**/integration/**\"",
+    "test:integration": "vitest run src/integration",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "i18next": "^26.3.6",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-i18next": "^17.0.11",
+    "react-router-dom": "^7.18.1",
+    "scss": "^0.2.4",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@eslint/js": "^10.0.1",
+    "@rolldown/plugin-babel": "^0.2.3",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.3",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "jsdom": "^25.0.1",
+    "json-server": "^1.0.0-beta.15",
+    "sass-embedded": "^1.100.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
+  }
+}

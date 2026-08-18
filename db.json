@@ -1,0 +1,112 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Азим2",
+      "email": "azim2@gmail.com",
+      "password": "123456",
+      "avatar": ""
+    }
+  ],
+  "projects": [
+    {
+      "name": "ww",
+      "description": "ee",
+      "ownerId": "tYHPhjYfnQQ",
+      "members": [
+        {
+          "userId": "tYHPhjYfnQQ",
+          "role": "owner"
+        },
+        {
+          "userId": "1",
+          "role": "member"
+        }
+      ],
+      "progress": 0,
+      "status": "active",
+      "createdAt": "2026-08-18T08:08:06.553Z",
+      "id": "l8MMW65aOLg"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Сделать дизайн логина",
+      "description": "Разработать макет страницы входа",
+      "status": "done",
+      "priority": "high",
+      "projectId": 1,
+      "assigneeId": 1,
+      "dueDate": "2026-07-20T00:00:00.000Z",
+      "createdAt": "2026-06-16T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Подключить API",
+      "description": "Настроить json-server и связать со стором",
+      "status": "in_progress",
+      "priority": "medium",
+      "projectId": 1,
+      "assigneeId": 1,
+      "dueDate": "2026-07-28T00:00:00.000Z",
+      "createdAt": "2026-06-18T10:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Написать тесты",
+      "description": "",
+      "status": "todo",
+      "priority": "low",
+      "projectId": 1,
+      "assigneeId": 1,
+      "dueDate": null,
+      "createdAt": "2026-06-20T10:00:00.000Z"
+    },
+    {
+      "title": "Test task",
+      "description": "",
+      "status": "todo",
+      "priority": "medium",
+      "projectId": "1",
+      "assigneeId": "1",
+      "dueDate": null,
+      "createdAt": "2026-08-04T00:00:00.000Z",
+      "id": "rwpul3eJolU"
+    },
+    {
+      "title": "ww",
+      "description": "dddd",
+      "priority": "medium",
+      "status": "done",
+      "projectId": "l8MMW65aOLg",
+      "assigneeId": "tYHPhjYfnQQ",
+      "dueDate": null,
+      "createdAt": "2026-08-18T08:09:27.833Z",
+      "id": "ZuKHN8gO1fY"
+    },
+    {
+      "title": "kkw",
+      "description": "rmrrm",
+      "priority": "medium",
+      "status": "todo",
+      "projectId": "l8MMW65aOLg",
+      "assigneeId": "tYHPhjYfnQQ",
+      "dueDate": null,
+      "createdAt": "2026-08-18T08:09:42.770Z",
+      "id": "6pgSLpenLPg"
+    },
+    {
+      "title": "jdnd",
+      "description": "kdkd",
+      "priority": "medium",
+      "status": "done",
+      "projectId": "2",
+      "assigneeId": "tYHPhjYfnQQ",
+      "dueDate": null,
+      "createdAt": "2026-08-18T08:37:34.123Z",
+      "id": "CZpocmVCtAc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

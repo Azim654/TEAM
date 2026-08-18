@@ -1,0 +1,28 @@
+.lang-switch {
+  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.lang-switch__option {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-switch__option:hover {
+  color: #fff;
+}
+
+.lang-switch__option--active {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}

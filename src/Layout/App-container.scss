@@ -1,0 +1,15 @@
+.layout {
+  min-height: 100vh;
+
+  &__content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+    background: var(--bg-secondary);
+    height: calc(100vh - 70px);
+
+    &.shift {
+      margin-left: 260px;
+    }
+  }
+}
