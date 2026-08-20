@@ -134,9 +134,9 @@
     "editTitle": "Task",
     "createTitle": "New task",
     "titleLabel": "Title",
-    "titlePlaceholder": "e.g. Design the login screen",
+    "titlePlaceholder": "Write title",
     "description": "Description",
-    "descriptionPlaceholder": "Task details (optional)",
+    "descriptionPlaceholder": "Task details",
     "priority": "Priority",
     "dueDate": "Due date",
     "errorTitleRequired": "Enter a task title"
@@ -169,6 +169,12 @@
     "saving": "Saving...",
     "avatarErrorType": "Please select an image file",
     "avatarErrorSize": "Maximum size is 2 MB",
-    "changeAvatar": "Change avatar"
+    "changeAvatar": "Change avatar",
+    "exitAccount": "Log out",
+    "deleteAccountHint": "Deleting your account is permanent. All your data will be lost.",
+    "deleteAccount": "Delete account",
+    "deleteConfirmTitle": "Delete account?",
+    "deleteConfirmText": "Your account will be permanently deleted. This cannot be undone.",
+    "deleteConfirmSubmit": "Yes, delete"
   }
 }

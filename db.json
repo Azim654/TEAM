@@ -6,6 +6,13 @@
       "email": "azim2@gmail.com",
       "password": "123456",
       "avatar": ""
+    },
+    {
+      "name": "azim",
+      "email": "azimazimqp11@gmail.com",
+      "password": "123456",
+      "avatar": "",
+      "id": "NDf6hcVwmXs"
     }
   ],
   "projects": [
@@ -27,6 +34,21 @@
       "status": "active",
       "createdAt": "2026-08-18T08:08:06.553Z",
       "id": "l8MMW65aOLg"
+    },
+    {
+      "name": "akakakka",
+      "description": "hfhffhf",
+      "ownerId": "NDf6hcVwmXs",
+      "members": [
+        {
+          "userId": "NDf6hcVwmXs",
+          "role": "owner"
+        }
+      ],
+      "progress": 0,
+      "status": "active",
+      "createdAt": "2026-08-20T06:13:29.233Z",
+      "id": "3_FGedAigzo"
     }
   ],
   "tasks": [
@@ -106,6 +128,17 @@
       "dueDate": null,
       "createdAt": "2026-08-18T08:37:34.123Z",
       "id": "CZpocmVCtAc"
+    },
+    {
+      "title": "whwhw",
+      "description": "jejejeejejj",
+      "priority": "medium",
+      "status": "in_progress",
+      "projectId": "3_FGedAigzo",
+      "assigneeId": "NDf6hcVwmXs",
+      "dueDate": null,
+      "createdAt": "2026-08-20T06:13:51.521Z",
+      "id": "P5_NV15CoMc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

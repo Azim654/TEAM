@@ -13,6 +13,8 @@ interface AuthState {
   register: (name: string, email: string, password: string) => Promise<void>
   logout: () => void
   updateUser: (updates: Partial<User>) => Promise<void>
+  exitAccount: () => Promise<void>
+  deleteAccount: () => Promise<void>     
   isAuthenticated: () => boolean
 }
 
@@ -61,6 +63,32 @@ export const useAuthStore = create<AuthState>()(
         } catch (e) {
           set({ error: (e as Error).message, loading: false })
         }
+      },
+
+      exitAccount: async () => {
+        const current = get().user
+        if (!current) return
+        set({ loading: true, error: null })
+        try {
+          localStorage.removeItem("auth-token")
+          set({ user: null, token: null, loading: false })
+        } catch (e) {
+          set({ error: (e as Error).message, loading: false })
+        }
+      },
+
+      deleteAccount: async () => {
+      const current = get().user
+      if (!current) return
+      set({ loading: true, error: null })
+      try {
+        await authApi.deleteAccount(current.id)
+        localStorage.removeItem("auth-token")
+        set({ user: null, token: null, loading: false })
+      } catch (e) {
+        set({ error: (e as Error).message, loading: false })
+        throw e
+      }
       },
 
       isAuthenticated: () => !!get().token,

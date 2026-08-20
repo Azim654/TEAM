@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import LoginForm from "./components/LoginForm/LoginForm"
 import RegisterForm from "./components/RegisterForm/RegisterFrom"
@@ -10,7 +10,6 @@ type AuthMode = "login" | "register"
 
 function Auth() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const location = useLocation()
 
   const [mode, setMode] = useState<AuthMode>(
@@ -19,7 +18,6 @@ function Auth() {
 
   const switchMode = (newMode: AuthMode) => {
     setMode(newMode)
-    navigate(newMode === "register" ? "/register" : "/login", { replace: true })
   }
 
   return (

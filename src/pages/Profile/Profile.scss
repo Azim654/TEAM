@@ -68,25 +68,21 @@
   color: var(--text-secondary);
 }
 
-/* === Статистика === */
-
 .profile-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-/* Стили .stat-card вынесены в global.scss — используются и здесь,
-   и на главной странице (дашборд), поэтому должны быть доступны
-   независимо от того, какая страница загрузилась первой. */
-
-/* === Секция с формой === */
-
 .profile-section {
   background: var(--bg-primary);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 28px;
+
+  button {
+    margin-top: 12px;
+  }
 }
 
 .profile-section h2 {
@@ -138,8 +134,6 @@
   background: var(--bg-tertiary);
 }
 
-/* === Кнопки (переиспользуют общие классы, если уже есть) === */
-
 .btn--outline {
   height: 40px;
   padding: 0 18px;
@@ -158,19 +152,20 @@
   border-color: var(--border-hover);
 }
 
-/* === Адаптив === */
+.profile-section--danger {
+  border-color: var(--danger);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-@media (max-width: 600px) {
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-  }
+.profile-delete {
+  width: fit-content;
+  color : var(--danger);
+}
 
-  .profile-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-page {
-    padding: 20px 16px;
-  }
+.profile__delete-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
 }

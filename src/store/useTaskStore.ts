@@ -17,6 +17,12 @@ interface TaskState {
   getTasksByProject: (projectId: string | number) => Task[]
 }
 
+// Единственный "в полёте" промис начальной загрузки. Шапка (поиск),
+// страница проекта и профиль могут запросить задачи почти одновременно
+// при открытии страницы — без дедупликации это были бы отдельные
+// параллельные запросы, и тот из них, что завершится ПОЗЖЕ, целиком
+// перезаписал бы стор старым снимком с сервера, стерев то, что
+// пользователь успел создать/изменить, пока запрос был в полёте.
 let inFlightFetch: Promise<void> | null = null
 
 export const useTaskStore = create<TaskState>((set, get) => ({
@@ -44,9 +50,6 @@ export const useTaskStore = create<TaskState>((set, get) => ({
   },
 
   createTask: async (task) => {
-    // Если начальная загрузка ещё не завершилась — дожидаемся её,
-    // чтобы не создать задачу поверх состояния, которое вот-вот
-    // будет затёрто пришедшим ответом сервера.
     if (inFlightFetch) await inFlightFetch
     const newTask = await tasksApi.create(task)
     set((state) => ({ tasks: [...state.tasks, newTask] }))

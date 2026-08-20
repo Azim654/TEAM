@@ -136,7 +136,7 @@
     "titleLabel": "Название",
     "titlePlaceholder": "Например, Сделать дизайн логина",
     "description": "Описание",
-    "descriptionPlaceholder": "Детали задачи (необязательно)",
+    "descriptionPlaceholder": "Детали задачи",
     "priority": "Приоритет",
     "dueDate": "Срок",
     "errorTitleRequired": "Введите название задачи"
@@ -169,6 +169,12 @@
     "saving": "Сохраняем...",
     "avatarErrorType": "Выберите файл изображения",
     "avatarErrorSize": "Максимальный размер — 2 МБ",
-    "changeAvatar": "Изменить аватар"
+    "changeAvatar": "Изменить аватар",
+    "exitAccount": "Выйти из аккаунта",
+    "deleteAccountHint": "Удаление аккаунта необратимо. Все ваши данные будут потеряны.",
+    "deleteAccount": "Удалить аккаунт",
+    "deleteConfirmTitle": "Удалить аккаунт?",
+    "deleteConfirmText": "Ваш аккаунт будет удалён безвозвратно. Это действие нельзя отменить.",
+    "deleteConfirmSubmit": "Да, удалить"
   }
 }

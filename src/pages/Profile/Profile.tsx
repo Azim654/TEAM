@@ -6,17 +6,33 @@ import { useTaskStore } from "../../store/useTaskStore"
 import Avatar from "../../Components/Avatar/Avatar"
 
 import "./Profile.scss"
+import { useNavigate } from "react-router-dom"
+import Modal from "../../Components/Modal/Modal"
 
 function Profile() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { projects, fetchProjects } = useProjectStore()
   const { tasks, fetchTasks } = useTaskStore()
-  const { user, updateUser, loading } = useAuthStore()
+  const { user, updateUser, loading, deleteAccount, exitAccount } = useAuthStore()
   const [isEditing, setIsEditing] = useState(false)
   const [name, setName] = useState(user?.name ?? "")
   const [email, setEmail] = useState(user?.email ?? "")
   const [avatarError, setAvatarError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [deleteOpen, setDeleteOpen] = useState(false)
+  const [deleting, setDeleting] = useState(false)
+
+  const handleDeleteAccount = async () => {
+    setDeleting(true)
+    try {
+      await deleteAccount()
+      navigate("/login")
+    } catch {
+      setDeleting(false)
+    }
+  }
 
   useEffect(() => {
     fetchProjects()
@@ -142,7 +158,40 @@ function Profile() {
             </button>
           )}
         </form>
-      </div>
+
+        <button className="btn btn--outline" onClick={() => exitAccount()}>
+          {t("profile.exitAccount")}
+        </button>
+
+        </div>
+        <div className="profile-section profile-section--danger">
+          <p className="profile-danger-text">{t("profile.deleteAccountHint")}</p>
+          <button
+            type="button"
+            className="btn btn--danger btn--outline profile-delete"
+            onClick={() => setDeleteOpen(true)}
+          >
+            {t("profile.deleteAccount")}
+          </button>
+        </div>
+
+        <Modal isOpen={deleteOpen} onClose={() => setDeleteOpen(false)}>
+          <h1>{t("profile.deleteConfirmTitle")}</h1>
+          <p className="profile__delete-text">{t("profile.deleteConfirmText")}</p>
+          <div className="profile__delete-buttons">
+            <button type="button" className="btn btn--outline" onClick={() => setDeleteOpen(false)}>
+              {t("common.cancel")}
+            </button>
+            <button
+              type="button"
+              className="btn btn--danger btn--outline profile-delete"
+              onClick={handleDeleteAccount}
+              disabled={deleting}
+            >
+              {deleting ? t("common.saving") : t("profile.deleteConfirmSubmit")}
+            </button>
+          </div>
+        </Modal>
     </div>
   )
 }

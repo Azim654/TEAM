@@ -13,13 +13,14 @@ interface AuthResult {
 
 export const authApi = {
   login: async (email: string, password: string): Promise<AuthResult> => {
-    const users = await api.get<UserRecord[]>(
-      `/users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
-    )
-    if (users.length === 0) throw new Error(i18n.t("auth.errorInvalidCredentials"))
+  const users = await api.get<UserRecord[]>(
+    `/users?email=${encodeURIComponent(email)}`
+  )
+  const found = users.find((u) => u.password === password)
+  if (!found) throw new Error(i18n.t("auth.errorInvalidCredentials"))
 
-    const { password: _password, ...user } = users[0]
-    return { user, token: `fake-jwt-token-${user.id}` }
+  const { password: _password, ...user } = found
+  return { user, token: `fake-jwt-token-${user.id}` }
   },
 
   register: async (name: string, email: string, password: string): Promise<AuthResult> => {
@@ -48,5 +49,9 @@ export const authApi = {
     if (users.length === 0) return null
     const { password: _password, ...user } = users[0]
     return user
+  },
+
+  deleteAccount: async (id: string): Promise<void> => {
+  await api.delete<null>(`/users/${id}`)
   },
 }
