@@ -7,6 +7,7 @@ import { useAuthStore } from "../../store/useAuthStore"
 import Board from "../../Components/Board/Board"
 import ProjectMembers from "../../Components/ProjectMembers/ProjectMembers"
 import Modal from "../../Components/Modal/Modal"
+import { hasPermission } from "../../utils/permissions"
 
 import "./ProjectDetail.scss"
 
@@ -47,9 +48,7 @@ function ProjectDetail() {
   if (!id) return null
   if (!currentProject) return null
 
-  const isOwner = currentProject.members.some(
-    (m) => m.userId === user?.id && m.role === "owner"
-  )
+  const canManageProject = hasPermission(currentProject, user?.id, "manage_project")
 
   const toggleStatus = () => {
     updateProject(id, {
@@ -107,7 +106,7 @@ function ProjectDetail() {
             <span className="project__team-count">{currentProject.members.length}</span>
           </button>
 
-          {isOwner && (
+          {canManageProject && (
             <div className="project__actions-wrap" ref={actionsRef}>
               <button
                 className="project__actions-trigger"
@@ -146,7 +145,7 @@ function ProjectDetail() {
       </div>
 
       <div className="boards">
-        <Board projectId={id} />
+        <Board projectId={id} boardId={id} />
       </div>
 
       <Modal isOpen={teamOpen} onClose={() => setTeamOpen(false)}>

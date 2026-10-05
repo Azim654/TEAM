@@ -15,6 +15,7 @@
       "id": "NDf6hcVwmXs"
     }
   ],
+  "workspaces": [],
   "projects": [
     {
       "name": "ww",
@@ -23,17 +24,48 @@
       "members": [
         {
           "userId": "tYHPhjYfnQQ",
-          "role": "owner"
+          "roleId": "owner"
         },
         {
           "userId": "1",
-          "role": "member"
+          "roleId": "member"
         }
       ],
       "progress": 0,
       "status": "active",
       "createdAt": "2026-08-18T08:08:06.553Z",
-      "id": "l8MMW65aOLg"
+      "id": "l8MMW65aOLg",
+      "roles": [
+        {
+          "id": "owner",
+          "name": "Владелец",
+          "level": 1000,
+          "isBuiltIn": true,
+          "permissions": [
+            "manage_project",
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks",
+            "delete_tasks",
+            "assign_tasks",
+            "manage_members",
+            "manage_roles",
+            "view_analytics"
+          ]
+        },
+        {
+          "id": "member",
+          "name": "Участник",
+          "level": 10,
+          "permissions": [
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks"
+          ]
+        }
+      ],
+      "joinCode": "HH6QG5",
+      "workspaceId": null
     },
     {
       "name": "akakakka",
@@ -42,13 +74,113 @@
       "members": [
         {
           "userId": "NDf6hcVwmXs",
-          "role": "owner"
+          "roleId": "owner"
         }
       ],
       "progress": 0,
       "status": "active",
       "createdAt": "2026-08-20T06:13:29.233Z",
-      "id": "3_FGedAigzo"
+      "id": "3_FGedAigzo",
+      "joinCode": "LB2Q7N",
+      "roles": [
+        {
+          "id": "owner",
+          "name": "Владелец",
+          "level": 1000,
+          "isBuiltIn": true,
+          "permissions": [
+            "manage_project",
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks",
+            "delete_tasks",
+            "assign_tasks",
+            "manage_members",
+            "manage_roles",
+            "view_analytics"
+          ]
+        },
+        {
+          "id": "member",
+          "name": "Участник",
+          "level": 10,
+          "permissions": [
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks"
+          ]
+        }
+      ],
+      "workspaceId": null
+    },
+    {
+      "name": "sssssssd",
+      "description": "ddd",
+      "ownerId": "NDf6hcVwmXs",
+      "workspaceId": null,
+      "joinCode": "EZ982B",
+      "roles": [
+        {
+          "id": "owner",
+          "name": "Владелец",
+          "level": 1000,
+          "isBuiltIn": true,
+          "permissions": [
+            "manage_project",
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks",
+            "delete_tasks",
+            "assign_tasks",
+            "manage_members",
+            "manage_roles",
+            "view_analytics"
+          ]
+        },
+        {
+          "id": "member",
+          "name": "Участник",
+          "level": 10,
+          "permissions": [
+            "view_tasks",
+            "create_tasks",
+            "edit_tasks"
+          ]
+        }
+      ],
+      "members": [
+        {
+          "userId": "NDf6hcVwmXs",
+          "roleId": "owner"
+        }
+      ],
+      "progress": 0,
+      "status": "active",
+      "createdAt": "2026-10-05T06:36:39.895Z",
+      "id": "VEy98InmNkk"
+    }
+  ],
+  "boards": [
+    {
+      "id": "board_l8MMW65aOLg",
+      "projectId": "l8MMW65aOLg",
+      "name": "Основная доска",
+      "description": "",
+      "createdAt": "2026-08-18T08:08:06.553Z"
+    },
+    {
+      "id": "board_3_FGedAigzo",
+      "projectId": "3_FGedAigzo",
+      "name": "Основная доска",
+      "description": "",
+      "createdAt": "2026-08-20T06:13:29.233Z"
+    },
+    {
+      "projectId": "VEy98InmNkk",
+      "name": "boards.defaultName",
+      "description": "",
+      "createdAt": "2026-10-05T06:36:39.902Z",
+      "id": "CH7qC8TGIdo"
     }
   ],
   "tasks": [
@@ -105,18 +237,22 @@
       "assigneeId": "tYHPhjYfnQQ",
       "dueDate": null,
       "createdAt": "2026-08-18T08:09:27.833Z",
-      "id": "ZuKHN8gO1fY"
+      "id": "ZuKHN8gO1fY",
+      "boardId": "board_l8MMW65aOLg",
+      "storyPoint": null
     },
     {
       "title": "kkw",
       "description": "rmrrm",
       "priority": "medium",
-      "status": "todo",
+      "status": "in_progress",
       "projectId": "l8MMW65aOLg",
       "assigneeId": "tYHPhjYfnQQ",
       "dueDate": null,
       "createdAt": "2026-08-18T08:09:42.770Z",
-      "id": "6pgSLpenLPg"
+      "id": "6pgSLpenLPg",
+      "boardId": "board_l8MMW65aOLg",
+      "storyPoint": null
     },
     {
       "title": "jdnd",
@@ -133,23 +269,271 @@
       "title": "whwhw",
       "description": "jejejeejejj",
       "priority": "medium",
-      "status": "in_progress",
+      "status": "todo",
       "projectId": "3_FGedAigzo",
       "assigneeId": "NDf6hcVwmXs",
       "dueDate": null,
       "createdAt": "2026-08-20T06:13:51.521Z",
-      "id": "P5_NV15CoMc"
+      "id": "P5_NV15CoMc",
+      "boardId": "board_3_FGedAigzo",
+      "storyPoint": null
     },
     {
       "title": "kdkdk",
       "description": "jffjfj",
       "priority": "medium",
-      "status": "todo",
+      "status": "done",
       "projectId": "3_FGedAigzo",
       "assigneeId": "NDf6hcVwmXs",
       "dueDate": null,
       "createdAt": "2026-08-20T07:53:41.097Z",
-      "id": "uGgqbUh3O4g"
+      "id": "uGgqbUh3O4g",
+      "boardId": "board_3_FGedAigzo",
+      "storyPoint": null
+    },
+    {
+      "title": "ww",
+      "description": "eee",
+      "priority": "medium",
+      "storyPoint": null,
+      "status": "in_progress",
+      "projectId": "3_FGedAigzo",
+      "boardId": "board_3_FGedAigzo",
+      "assigneeId": "NDf6hcVwmXs",
+      "dueDate": null,
+      "createdAt": "2026-10-05T04:52:16.637Z",
+      "id": "7TygHxaouGY"
+    },
+    {
+      "title": "wwww",
+      "description": "eeeeeeee",
+      "priority": "medium",
+      "storyPoint": null,
+      "status": "backlog",
+      "projectId": "3_FGedAigzo",
+      "boardId": "3_FGedAigzo",
+      "assigneeId": "NDf6hcVwmXs",
+      "dueDate": null,
+      "createdAt": "2026-10-05T06:33:33.764Z",
+      "id": "II2ekGA4lvc"
+    },
+    {
+      "title": "ssss",
+      "description": "ddddddddddddf",
+      "priority": "medium",
+      "storyPoint": 5,
+      "status": "backlog",
+      "projectId": "VEy98InmNkk",
+      "boardId": "VEy98InmNkk",
+      "assigneeId": "NDf6hcVwmXs",
+      "dueDate": null,
+      "createdAt": "2026-10-05T06:36:51.604Z",
+      "id": "ttsx1G1yjlE"
+    }
+  ],
+  "activityLog": [
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "created",
+      "meta": {},
+      "createdAt": "2026-10-05T06:33:33.783Z",
+      "id": "vTtMIP4fIlo"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "backlog",
+        "to": "todo"
+      },
+      "createdAt": "2026-10-05T06:33:34.985Z",
+      "id": "vwORTY_EnSo"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "todo",
+        "to": "in_progress"
+      },
+      "createdAt": "2026-10-05T06:33:38.073Z",
+      "id": "9G1GH3JGOk4"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "in_progress",
+        "to": "review"
+      },
+      "createdAt": "2026-10-05T06:33:40.824Z",
+      "id": "01orEA2OoBI"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "review",
+        "to": "testing"
+      },
+      "createdAt": "2026-10-05T06:33:43.704Z",
+      "id": "OV0RQxwLrNE"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "testing",
+        "to": "done"
+      },
+      "createdAt": "2026-10-05T06:33:50.742Z",
+      "id": "SNCjzEXYs_A"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "done",
+        "to": "todo"
+      },
+      "createdAt": "2026-10-05T06:33:57.182Z",
+      "id": "3QvlXM4f5dw"
+    },
+    {
+      "taskId": "II2ekGA4lvc",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "todo",
+        "to": "backlog"
+      },
+      "createdAt": "2026-10-05T06:34:01.069Z",
+      "id": "u9somsg4wmM"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "created",
+      "meta": {},
+      "createdAt": "2026-10-05T06:36:51.619Z",
+      "id": "Vm2wTGnPJR0"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "todo",
+        "to": "backlog"
+      },
+      "createdAt": "2026-10-05T06:36:52.822Z",
+      "id": "XrVq4cDCFzQ"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "backlog",
+        "to": "in_progress"
+      },
+      "createdAt": "2026-10-05T06:36:54.135Z",
+      "id": "5IJg2NcOuyI"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "in_progress",
+        "to": "backlog"
+      },
+      "createdAt": "2026-10-05T06:36:54.981Z",
+      "id": "bDY0EiveHmE"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "backlog",
+        "to": "review"
+      },
+      "createdAt": "2026-10-05T06:37:05.449Z",
+      "id": "SDCBhsu98gw"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "review",
+        "to": "backlog"
+      },
+      "createdAt": "2026-10-05T06:37:06.448Z",
+      "id": "a_C5kXApWrk"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "backlog",
+        "to": "todo"
+      },
+      "createdAt": "2026-10-05T06:40:27.727Z",
+      "id": "adBc6tN1-E8"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "todo",
+        "to": "in_progress"
+      },
+      "createdAt": "2026-10-05T06:40:28.500Z",
+      "id": "wT-630KprZc"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "in_progress",
+        "to": "review"
+      },
+      "createdAt": "2026-10-05T06:43:13.951Z",
+      "id": "J5tixJ_elDU"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "review",
+        "to": "in_progress"
+      },
+      "createdAt": "2026-10-05T06:44:13.582Z",
+      "id": "pkrJP8eaPm8"
+    },
+    {
+      "taskId": "ttsx1G1yjlE",
+      "userId": "NDf6hcVwmXs",
+      "action": "status_changed",
+      "meta": {
+        "from": "in_progress",
+        "to": "backlog"
+      },
+      "createdAt": "2026-10-05T06:44:22.175Z",
+      "id": "SYySIrtDm6s"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

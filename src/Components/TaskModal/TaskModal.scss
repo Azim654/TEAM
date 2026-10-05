@@ -35,9 +35,14 @@
   }
 
   select {
-    height: 42px;
-    cursor: pointer;
+  height: 42px;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
+}
 
   input[type="date"] {
     height: 42px;
@@ -82,5 +87,17 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
+}
+
+.task-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.task-card__assignee {
+  flex-shrink: 0;
+  line-height: 0;
 }
 

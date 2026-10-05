@@ -6,6 +6,7 @@ import { useProjectStore } from "../../store/useProjectStore"
 import { useTaskStore } from "../../store/useTaskStore"
 import ProjectCard from "../../Components/ProjectCard/ProjectCard"
 import CreateProject from "../../Components/CreateProject/CreateProject"
+import JoinProject from "../../Components/JoinProject/JoinProject"
 
 import "./Main.scss"
 
@@ -81,6 +82,7 @@ function Dashboard() {
             <p>{t("main.emptyDashboard")}</p>
             <p className="dashboard__empty-hint">{t("main.emptyDashboardHint")}</p>
             <CreateProject />
+            <JoinProject />
           </div>
         ) : (
           <div className="dashboard__projects">

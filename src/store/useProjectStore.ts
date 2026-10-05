@@ -1,8 +1,34 @@
 import { create } from "zustand"
 import i18n from "../i18n"
 import { projectsApi } from "../api/projectApi"
-import { authApi } from "../api/Auth"
-import type { Project, ProjectMember, Role } from "../types"
+import { boardsApi } from "../api/boardsApi"
+import { useAuthStore } from "./useAuthStore"
+import { createDefaultRoles, OWNER_ROLE_ID, DEFAULT_MEMBER_ROLE_ID } from "../utils/permissions"
+import type { Project, ProjectMember, ProjectRole } from "../types"
+
+function isProjectVisibleToUser(project: Project, userId: string | undefined): boolean {
+  if (!userId) return false
+  return project.ownerId === userId || project.members.some((m) => m.userId === userId)
+}
+
+const JOIN_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+
+function generateJoinCode(length = 6): string {
+  let code = ""
+  for (let i = 0; i < length; i++) {
+    code += JOIN_CODE_ALPHABET[Math.floor(Math.random() * JOIN_CODE_ALPHABET.length)]
+  }
+  return code
+}
+
+async function generateUniqueJoinCode(): Promise<string> {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const candidate = generateJoinCode()
+    const existing = await projectsApi.getByJoinCode(candidate)
+    if (!existing) return candidate
+  }
+  return generateJoinCode(8)
+}
 
 interface ProjectState {
   projects: Project[]
@@ -16,15 +42,26 @@ interface ProjectState {
   fetchProjects: (force?: boolean) => Promise<void>
   fetchProjectById: (id: string) => Promise<void>
   createProject: (
-    project: Pick<Project, "name" | "description" | "ownerId" | "members">
+    project: Pick<Project, "name" | "description" | "ownerId" | "workspaceId">
   ) => Promise<Project>
   updateProject: (id: string, updates: Partial<Project>) => Promise<void>
   removeProject: (id: string) => Promise<void>
 
-  inviteMember: (projectId: string, email: string) => Promise<void>
+  joinProjectByCode: (code: string) => Promise<Project>
+  regenerateJoinCode: (projectId: string) => Promise<void>
   removeMember: (projectId: string, userId: string) => Promise<void>
-  changeMemberRole: (projectId: string, userId: string, role: Role) => Promise<void>
-  getMemberRole: (project: Project, userId: string) => Role | null
+  changeMemberRole: (projectId: string, userId: string, roleId: string) => Promise<void>
+
+  createRole: (
+    projectId: string,
+    role: Pick<ProjectRole, "name" | "level" | "permissions">
+  ) => Promise<ProjectRole>
+  updateRole: (
+    projectId: string,
+    roleId: string,
+    updates: Partial<Pick<ProjectRole, "name" | "level" | "permissions">>
+  ) => Promise<void>
+  removeRole: (projectId: string, roleId: string) => Promise<void>
 }
 
 let inFlightFetch: Promise<void> | null = null
@@ -49,7 +86,9 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     set({ loading: true, error: null })
     inFlightFetch = (async () => {
       try {
-        const projects = await projectsApi.getAll()
+        const allProjects = await projectsApi.getAll()
+        const userId = useAuthStore.getState().user?.id
+        const projects = allProjects.filter((p) => isProjectVisibleToUser(p, userId))
         set({ projects, loading: false, loaded: true })
       } catch (e) {
         set({ error: (e as Error).message, loading: false })
@@ -61,9 +100,14 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
   },
 
   fetchProjectById: async (id) => {
-    set({ loading: true, error: null })
+    set({ loading: true, error: null, currentProject: null })
     try {
       const project = await projectsApi.getById(id)
+      const userId = useAuthStore.getState().user?.id
+      if (!isProjectVisibleToUser(project, userId)) {
+        set({ currentProject: null, loading: false, error: i18n.t("projects.errorAccessDenied") })
+        return
+      }
       set({ currentProject: project, loading: false })
     } catch (e) {
       set({ error: (e as Error).message, loading: false })
@@ -72,8 +116,21 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
 
   createProject: async (project) => {
     await waitForInFlightFetch()
-    const newProject = await projectsApi.create(project)
+    const joinCode = await generateUniqueJoinCode()
+    const roles = createDefaultRoles()
+    const members: ProjectMember[] = [{ userId: project.ownerId, roleId: OWNER_ROLE_ID }]
+    const newProject = await projectsApi.create({ ...project, joinCode, roles, members })
     set((state) => ({ projects: [...state.projects, newProject] }))
+    try {
+      await boardsApi.create({
+        projectId: newProject.id,
+        name: i18n.t("boards.defaultName"),
+        description: "",
+      })
+    } catch {
+      // Проект уже создан и виден пользователю — он всегда сможет
+      // создать доску вручную, поэтому здесь не бросаем ошибку дальше.
+    }
     return newProject
   },
 
@@ -94,25 +151,54 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     }))
   },
 
-  inviteMember: async (projectId, email) => {
+  joinProjectByCode: async (code) => {
+    set({ memberError: null, memberLoading: true })
+    try {
+      const trimmed = code.trim().toUpperCase()
+      if (!trimmed) throw new Error(i18n.t("projects.errorJoinCodeRequired"))
+
+      const project = await projectsApi.getByJoinCode(trimmed)
+      if (!project) throw new Error(i18n.t("projects.errorJoinCodeNotFound"))
+
+      const userId = useAuthStore.getState().user?.id
+      if (!userId) throw new Error(i18n.t("projects.errorNotFound"))
+
+      if (project.members.some((m) => m.userId === userId)) {
+        set((state) => ({
+          projects: state.projects.some((p) => p.id === project.id)
+            ? state.projects
+            : [...state.projects, project],
+          memberLoading: false,
+        }))
+        return project
+      }
+
+      const newMember: ProjectMember = { userId, roleId: DEFAULT_MEMBER_ROLE_ID }
+      const updated = await projectsApi.update(project.id, {
+        members: [...project.members, newMember],
+      })
+      set((state) => ({
+        projects: state.projects.some((p) => p.id === updated.id)
+          ? state.projects.map((p) => (p.id === updated.id ? updated : p))
+          : [...state.projects, updated],
+        memberLoading: false,
+      }))
+      return updated
+    } catch (e) {
+      set({ memberError: (e as Error).message, memberLoading: false })
+      throw e
+    }
+  },
+
+  regenerateJoinCode: async (projectId) => {
     set({ memberError: null, memberLoading: true })
     try {
       await waitForInFlightFetch()
       const project = get().currentProject
       if (!project || project.id !== projectId) throw new Error(i18n.t("projects.errorNotFound"))
 
-      const user = await authApi.findByEmail(email.trim())
-      if (!user) {
-        throw new Error(i18n.t("members.errorUserNotFound"))
-      }
-      if (project.members.some((m) => m.userId === user.id)) {
-        throw new Error(i18n.t("members.errorAlreadyMember"))
-      }
-
-      const newMember: ProjectMember = { userId: user.id, role: "member" }
-      const updated = await projectsApi.update(projectId, {
-        members: [...project.members, newMember],
-      })
+      const newCode = await generateUniqueJoinCode()
+      const updated = await projectsApi.update(projectId, { joinCode: newCode })
       set((state) => ({
         currentProject: updated,
         projects: state.projects.map((p) => (p.id === projectId ? updated : p)),
@@ -145,7 +231,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     }
   },
 
-  changeMemberRole: async (projectId, userId, role) => {
+  changeMemberRole: async (projectId, userId, roleId) => {
     set({ memberError: null, memberLoading: true })
     try {
       await waitForInFlightFetch()
@@ -153,7 +239,7 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
       if (!project || project.id !== projectId) throw new Error(i18n.t("projects.errorNotFound"))
 
       const updated = await projectsApi.update(projectId, {
-        members: project.members.map((m) => (m.userId === userId ? { ...m, role } : m)),
+        members: project.members.map((m) => (m.userId === userId ? { ...m, roleId } : m)),
       })
       set((state) => ({
         currentProject: updated,
@@ -166,6 +252,85 @@ export const useProjectStore = create<ProjectState>((set, get) => ({
     }
   },
 
-  getMemberRole: (project, userId) =>
-    project.members.find((m) => m.userId === userId)?.role ?? null,
+  createRole: async (projectId, role) => {
+    set({ memberError: null, memberLoading: true })
+    try {
+      await waitForInFlightFetch()
+      const project = get().currentProject
+      if (!project || project.id !== projectId) throw new Error(i18n.t("projects.errorNotFound"))
+      if (!role.name.trim()) throw new Error(i18n.t("roles.errorNameRequired"))
+
+      const newRole: ProjectRole = {
+        id: `role_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+        name: role.name.trim(),
+        level: role.level,
+        permissions: role.permissions,
+      }
+      const updated = await projectsApi.update(projectId, {
+        roles: [...project.roles, newRole],
+      })
+      set((state) => ({
+        currentProject: updated,
+        projects: state.projects.map((p) => (p.id === projectId ? updated : p)),
+        memberLoading: false,
+      }))
+      return newRole
+    } catch (e) {
+      set({ memberError: (e as Error).message, memberLoading: false })
+      throw e
+    }
+  },
+
+  updateRole: async (projectId, roleId, updates) => {
+    set({ memberError: null, memberLoading: true })
+    try {
+      await waitForInFlightFetch()
+      const project = get().currentProject
+      if (!project || project.id !== projectId) throw new Error(i18n.t("projects.errorNotFound"))
+
+      const target = project.roles.find((r) => r.id === roleId)
+      if (!target) throw new Error(i18n.t("roles.errorNotFound"))
+      if (target.isBuiltIn) throw new Error(i18n.t("roles.errorBuiltInRole"))
+
+      const updated = await projectsApi.update(projectId, {
+        roles: project.roles.map((r) => (r.id === roleId ? { ...r, ...updates } : r)),
+      })
+      set((state) => ({
+        currentProject: updated,
+        projects: state.projects.map((p) => (p.id === projectId ? updated : p)),
+        memberLoading: false,
+      }))
+    } catch (e) {
+      set({ memberError: (e as Error).message, memberLoading: false })
+      throw e
+    }
+  },
+
+  removeRole: async (projectId, roleId) => {
+    set({ memberError: null, memberLoading: true })
+    try {
+      await waitForInFlightFetch()
+      const project = get().currentProject
+      if (!project || project.id !== projectId) throw new Error(i18n.t("projects.errorNotFound"))
+
+      const target = project.roles.find((r) => r.id === roleId)
+      if (!target) throw new Error(i18n.t("roles.errorNotFound"))
+      if (target.isBuiltIn) throw new Error(i18n.t("roles.errorBuiltInRole"))
+      if (project.members.some((m) => m.roleId === roleId)) {
+        throw new Error(i18n.t("roles.errorRoleInUse"))
+      }
+
+      const updated = await projectsApi.update(projectId, {
+        roles: project.roles.filter((r) => r.id !== roleId),
+      })
+      set((state) => ({
+        currentProject: updated,
+        projects: state.projects.map((p) => (p.id === projectId ? updated : p)),
+        memberLoading: false,
+      }))
+    } catch (e) {
+      set({ memberError: (e as Error).message, memberLoading: false })
+      throw e
+    }
+  },
 }))

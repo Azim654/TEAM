@@ -1,0 +1,182 @@
+.role-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.role-manager__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.role-manager__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: var(--bg-secondary);
+  }
+}
+
+.role-manager__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.role-manager__item-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.role-manager__locked {
+  font-size: 11px;
+}
+
+.role-manager__item-meta {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.role-manager__item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+
+  .btn {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+}
+
+.role-manager__delete {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--danger-bg);
+    color: var(--danger);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.role-manager__add {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  background: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+.role-manager__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    padding: 9px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-family: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--bg-primary);
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}
+
+.auth-field__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.role-manager__permissions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-manager__permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 14px;
+}
+
+.role-manager__permission {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-primary);
+  cursor: pointer;
+
+  input {
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+}

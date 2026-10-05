@@ -42,6 +42,8 @@
   align-items: flex-start;
   overflow-x: auto;
   padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 .board__column {
@@ -121,13 +123,3 @@
   border-radius: 10px;
 }
 
-@media (max-width: 900px) {
-  .board {
-    flex-direction: column;
-  }
-
-  .board__column {
-    max-width: none;
-    width: 100%;
-  }
-}

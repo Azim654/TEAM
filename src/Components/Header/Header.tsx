@@ -12,6 +12,7 @@ import { useThemeStore } from "../../store/useThemeStore"
 import { Router_Path } from "../../routes/Router_Path"
 
 import "./Header.scss"
+import JoinProject from "../JoinProject/JoinProject"
 
 interface HeaderProps {
   isOpen: boolean
@@ -43,6 +44,7 @@ function Header({ isOpen, toggleSidebar }: HeaderProps) {
         <div className="search-input">
           {user ? <GlobalSearch /> : <div className="search-input__placeholder" />}
           {user && <CreateProject />}
+          {user && <JoinProject />}
         </div>
       </div>
 

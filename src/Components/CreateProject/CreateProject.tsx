@@ -9,9 +9,10 @@ import "./CreateProject.scss"
 interface FormState {
   name: string
   description: string
+  workspaceId: string | null
 }
 
-const emptyForm: FormState = { name: "", description: "" }
+const emptyForm: FormState = { name: "", description: "", workspaceId: null }
 
 function CreateProject() {
   const { t } = useTranslation()
@@ -46,12 +47,12 @@ function CreateProject() {
     setSubmitting(true)
     setError(null)
     try {
-      await createProject({
-        name: form.name.trim(),
-        description: form.description.trim(),
-        ownerId: user.id,
-        members: [{ userId: user.id, role: "owner" }],
-      })
+    await createProject({
+      name: form.name.trim(),
+      description: form.description.trim(),
+      ownerId: user.id,
+      workspaceId: form.workspaceId || null,
+    })
       handleClose()
     } catch (err) {
       setError((err as Error).message)

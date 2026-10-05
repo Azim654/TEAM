@@ -110,7 +110,14 @@
     "deleteProject": "Delete project",
     "deleteConfirmTitle": "Delete project?",
     "deleteConfirmText": "The project \"{{name}}\" and all its tasks will be permanently deleted. This cannot be undone.",
-    "deleteConfirmSubmit": "Yes, delete"
+    "deleteConfirmSubmit": "Yes, delete",
+    "joinByCode": "Join by code",
+    "joinTitle": "Join a project by code",
+    "joinCodeLabel": "Project code",
+    "joinCodePlaceholder": "e.g. K7M2XQ",
+    "join": "Join",
+    "errorJoinCodeRequired": "Enter a project code",
+    "errorJoinCodeNotFound": "No project found with this code"
   },
   "board": {
     "priority": "Priority",
@@ -128,7 +135,13 @@
     "columnInProgress": "In progress",
     "columnDone": "Done",
     "addTask": "Add task",
-    "noTasks": "No tasks"
+    "noTasks": "No tasks",
+    "columnBacklog": "Backlog",
+    "columnReview": "Review",
+    "columnTesting": "Testing",
+    "storyPoint": "Story Point",
+    "storyPointAll": "Any",
+    "sortStoryPoint": "By Story Point"
   },
   "task": {
     "editTitle": "Task",
@@ -139,7 +152,12 @@
     "descriptionPlaceholder": "Task details",
     "priority": "Priority",
     "dueDate": "Due date",
-    "errorTitleRequired": "Enter a task title"
+    "errorTitleRequired": "Enter a task title",
+    "storyPoint": "Story Point",
+    "storyPointNone": "Not estimated",
+    "assignee": "Assignee",
+    "unassigned": "Unassigned",
+    "assigneeOwnerOnly": "Only the project owner can assign this task"
   },
   "members": {
     "title": "Team",
@@ -149,10 +167,46 @@
     "makeOwner": "Make owner",
     "demote": "Remove role",
     "remove": "Remove",
-    "invitePlaceholder": "Member's email",
-    "invite": "Invite",
-    "errorUserNotFound": "No user found with this email",
-    "errorAlreadyMember": "This user is already in the project"
+    "joinCodeTitle": "Project join code",
+    "joinCodeHint": "Share this code with your teammates — they can join the project with it, just like a Classroom code.",
+    "copyCode": "Copy",
+    "copied": "Copied!",
+    "regenerateCode": "Regenerate code",
+    "regenerateCodeHint": "The old code will stop working; members already in the project stay put",
+    "roles": "Roles"
+  },
+  "roles": {
+    "defaultOwnerName": "Owner",
+    "defaultMemberName": "Member",
+    "errorNameRequired": "Enter a role name",
+    "errorNotFound": "Role not found",
+    "errorBuiltInRole": "The built-in role can't be edited or deleted",
+    "errorRoleInUse": "This role is assigned to members — reassign them first",
+    "errorLevelTooHigh": "You can't create a role at or above your own level",
+    "errorViewTasksDenied": "Your role doesn't have permission to view this project's tasks",
+    "errorEditTasksDenied": "Your role doesn't have permission to edit tasks",
+    "errorDeleteTasksDenied": "Your role doesn't have permission to delete tasks",
+    "level": "Level",
+    "levelLabel": "Access level",
+    "levelHint": "max {{max}} — can't exceed your own",
+    "permissionsLabel": "Permissions",
+    "permissionsCount": "permissions",
+    "builtInHint": "Built-in role, can't be changed",
+    "addRole": "Add role",
+    "createTitle": "New role",
+    "editTitle": "Edit role",
+    "nameLabel": "Role name",
+    "namePlaceholder": "e.g. Team Lead",
+    "delete": "Delete role",
+    "permManageProject": "Manage project (settings, boards, deletion)",
+    "permViewTasks": "View tasks",
+    "permCreateTasks": "Create tasks",
+    "permEditTasks": "Edit tasks",
+    "permDeleteTasks": "Delete tasks",
+    "permAssignTasks": "Assign tasks",
+    "permManageMembers": "Manage members",
+    "permManageRoles": "Manage roles",
+    "permViewAnalytics": "View analytics"
   },
   "profile": {
     "editorial": "Edit",
@@ -176,5 +230,19 @@
     "deleteConfirmTitle": "Delete account?",
     "deleteConfirmText": "Your account will be permanently deleted. This cannot be undone.",
     "deleteConfirmSubmit": "Yes, delete"
-  }
+  },
+  "activity": {
+  "title": "Activity",
+  "commentPlaceholder": "Write a comment...",
+  "send": "Send",
+  "empty": "No activity yet",
+  "created": "created the task",
+  "statusChanged": "changed status: {{from}} → {{to}}",
+  "assigneeChanged": "changed assignee: {{from}} → {{to}}",
+  "dueDateChanged": "changed due date: {{from}} → {{to}}",
+  "storyPointChanged": "changed Story Point: {{from}} → {{to}}",
+  "none": "—",
+  "unassigned": "Unassigned",
+  "unknownUser": "User"
+}
 }

@@ -110,7 +110,14 @@
     "deleteProject": "Удалить проект",
     "deleteConfirmTitle": "Удалить проект?",
     "deleteConfirmText": "Проект «{{name}}» и все его задачи будут удалены безвозвратно. Это действие нельзя отменить.",
-    "deleteConfirmSubmit": "Да, удалить"
+    "deleteConfirmSubmit": "Да, удалить",
+    "joinByCode": "Войти по коду",
+    "joinTitle": "Войти в проект по коду",
+    "joinCodeLabel": "Код проекта",
+    "joinCodePlaceholder": "Например, K7M2XQ",
+    "join": "Войти",
+    "errorJoinCodeRequired": "Введите код проекта",
+    "errorJoinCodeNotFound": "Проект с таким кодом не найден"
   },
   "board": {
     "priority": "Приоритет",
@@ -128,7 +135,13 @@
     "columnInProgress": "В работе",
     "columnDone": "Готово",
     "addTask": "Добавить задачу",
-    "noTasks": "Нет задач"
+    "noTasks": "Нет задач",
+    "columnBacklog": "Бэклог",
+    "columnReview": "Ревью",
+    "columnTesting": "Тестирование",
+    "storyPoint": "Story Point",
+    "storyPointAll": "Любой",
+    "sortStoryPoint": "По Story Point"
   },
   "task": {
     "editTitle": "Задача",
@@ -139,7 +152,12 @@
     "descriptionPlaceholder": "Детали задачи",
     "priority": "Приоритет",
     "dueDate": "Срок",
-    "errorTitleRequired": "Введите название задачи"
+    "errorTitleRequired": "Введите название задачи",
+    "storyPoint": "Story Point",
+    "storyPointNone": "Не оценено",
+    "assignee": "Исполнитель",
+    "unassigned": "Не назначен",
+    "assigneeOwnerOnly": "Назначать исполнителя может только владелец проекта"
   },
   "members": {
     "title": "Команда",
@@ -149,10 +167,46 @@
     "makeOwner": "Сделать главным",
     "demote": "Снять роль",
     "remove": "Удалить",
-    "invitePlaceholder": "Email участника",
-    "invite": "Пригласить",
-    "errorUserNotFound": "Пользователь с таким email не найден",
-    "errorAlreadyMember": "Этот пользователь уже в проекте"
+    "joinCodeTitle": "Код для входа в проект",
+    "joinCodeHint": "Отправьте этот код участникам — они смогут войти в проект по нему, как по коду урока в Classroom.",
+    "copyCode": "Скопировать",
+    "copied": "Скопировано!",
+    "regenerateCode": "Обновить код",
+    "regenerateCodeHint": "Старый код перестанет работать, уже добавленные участники останутся в проекте",
+    "roles": "Роли"
+  },
+  "roles": {
+    "defaultOwnerName": "Владелец",
+    "defaultMemberName": "Участник",
+    "errorNameRequired": "Введите название роли",
+    "errorNotFound": "Роль не найдена",
+    "errorBuiltInRole": "Встроенную роль нельзя изменить или удалить",
+    "errorRoleInUse": "Эту роль сейчас кто-то использует — сначала смените роль этим участникам",
+    "errorLevelTooHigh": "Нельзя создать роль с уровнем выше или равным вашему",
+    "errorViewTasksDenied": "У вашей роли нет прав на просмотр задач этого проекта",
+    "errorEditTasksDenied": "У вашей роли нет прав на изменение задач",
+    "errorDeleteTasksDenied": "У вашей роли нет прав на удаление задач",
+    "level": "Уровень",
+    "levelLabel": "Уровень доступа",
+    "levelHint": "максимум {{max}} — выше вашего собственного нельзя",
+    "permissionsLabel": "Разрешения",
+    "permissionsCount": "разрешений",
+    "builtInHint": "Встроенная роль, нельзя изменить",
+    "addRole": "Добавить роль",
+    "createTitle": "Новая роль",
+    "editTitle": "Редактировать роль",
+    "nameLabel": "Название роли",
+    "namePlaceholder": "Например, Тимлид",
+    "delete": "Удалить роль",
+    "permManageProject": "Управление проектом (настройки, доски, удаление)",
+    "permViewTasks": "Просмотр задач",
+    "permCreateTasks": "Создание задач",
+    "permEditTasks": "Изменение задач",
+    "permDeleteTasks": "Удаление задач",
+    "permAssignTasks": "Назначение исполнителя",
+    "permManageMembers": "Управление участниками",
+    "permManageRoles": "Управление ролями",
+    "permViewAnalytics": "Просмотр аналитики"
   },
   "profile": {
     "editorial": "Редактировать",
@@ -176,5 +230,20 @@
     "deleteConfirmTitle": "Удалить аккаунт?",
     "deleteConfirmText": "Ваш аккаунт будет удалён безвозвратно. Это действие нельзя отменить.",
     "deleteConfirmSubmit": "Да, удалить"
-  }
+  },
+  "activity": {
+  "title": "История изменений",
+  "commentPlaceholder": "Написать комментарий...",
+  "send": "Отправить",
+  "empty": "Пока нет истории",
+  "created": "создал(а) задачу",
+  "statusChanged": "изменил(а) статус: {{from}} → {{to}}",
+  "assigneeChanged": "изменил(а) исполнителя: {{from}} → {{to}}",
+  "dueDateChanged": "изменил(а) дедлайн: {{from}} → {{to}}",
+  "storyPointChanged": "изменил(а) Story Point: {{from}} → {{to}}",
+  "none": "—",
+  "unassigned": "Не назначен",
+  "unknownUser": "Пользователь"
+}
+
 }
